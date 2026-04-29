@@ -140,10 +140,4 @@ secureauth-pro/
 
 This project is open-sourced software licensed under the [MIT license](LICENSE).
 
-## Support
 
-For support, email support@example.com or open an issue on GitHub.
-
-## Author
-
-Created with ❤️ by Your Name
