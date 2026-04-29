@@ -1,60 +1,149 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SecureAuth Pro
 
+A Laravel-based web application for secure authentication and note management with OTP (One-Time Password) verification and advanced security features.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Features
 
-## About Laravel
+- **OTP Authentication**: Secure login with one-time passwords sent via email
+- **Secure Notes**: Create, read, update, and delete encrypted notes with role-based access control
+- **User Management**: Complete user authentication and authorization system
+- **Authorization Policies**: Fine-grained control over resource access
+- **Email Notifications**: Real-time OTP delivery and authentication alerts
+- **Responsive UI**: Built with Tailwind CSS for modern, mobile-friendly interface
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tech Stack
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Framework**: Laravel 11
+- **Frontend**: Blade templates, Tailwind CSS, Vite
+- **Database**: SQLite (configurable)
+- **Testing**: PHPUnit with Feature and Unit tests
+- **Package Manager**: Composer (PHP) and NPM (JavaScript)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Requirements
 
-## Learning Laravel
+- PHP 8.2 or higher
+- Composer
+- Node.js & npm
+- SQLite or MySQL database
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/secureauth-pro.git
+cd secureauth-pro
+```
 
-## Laravel Sponsors
+2. **Install PHP dependencies**
+```bash
+composer install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. **Install JavaScript dependencies**
+```bash
+npm install
+```
 
-### Premium Partners
+4. **Setup environment**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+5. **Configure database** (Edit `.env` and set database connection)
+```bash
+php artisan migrate
+```
+
+6. **Build frontend assets**
+```bash
+npm run build
+```
+
+## Running the Application
+
+**Development Server**
+```bash
+php artisan serve
+```
+
+**Frontend Build Watch**
+```bash
+npm run dev
+```
+
+**Run Tests**
+```bash
+php artisan test
+```
+
+## Project Structure
+
+```
+secureauth-pro/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/     # Application controllers
+│   │   ├── Middleware/      # HTTP middleware
+│   │   └── Requests/        # Form request validation
+│   ├── Models/              # Eloquent models
+│   ├── Services/            # Business logic (OTP service, etc.)
+│   ├── Policies/            # Authorization policies
+│   └── Notifications/       # Email notifications
+├── database/
+│   ├── migrations/          # Database migrations
+│   ├── factories/           # Model factories for testing
+│   └── seeders/             # Database seeders
+├── resources/
+│   ├── views/               # Blade templates
+│   ├── css/                 # Stylesheets
+│   └── js/                  # JavaScript files
+├── routes/                  # Route definitions
+├── tests/                   # Test suite
+└── config/                  # Configuration files
+```
+
+## Key Models
+
+- **User**: User account with authentication details
+- **AuthOtp**: OTP records for authentication
+- **SecureNote**: User's encrypted notes with access control
+
+## API Endpoints
+
+- `POST /login` - User login
+- `POST /auth/otp/verify` - OTP verification
+- `POST /auth/logout` - User logout
+- `GET /secure-notes` - List user's notes
+- `POST /secure-notes` - Create new note
+- `PUT /secure-notes/{id}` - Update note
+- `DELETE /secure-notes/{id}` - Delete note
+
+## Security Features
+
+- Password hashing with bcrypt
+- CSRF protection on all forms
+- OTP-based authentication
+- Authorization policies for resource access
+- Secure session management
+- Email verification for critical actions
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [MIT license](LICENSE).
+
+## Support
+
+For support, email support@example.com or open an issue on GitHub.
+
+## Author
+
+Created with ❤️ by Your Name
